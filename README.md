@@ -10,7 +10,40 @@ In this project we build a simple contact list to learn the essential features i
 * Angular
 * Bootstrap
 
-## Install Node (v10+) on Ubuntu 18.04 32 bits
+## Install Node and Npm
+
+### Ubuntu 18.04 64 bits
+
+(1) Download from [Node Official; Webpage](https://nodejs.org/en/)
+
+(2) Follow the instructions from [Node Installation](https://github.com/nodejs/help/wiki/Installation)
+
+1. Unzip the binary archive to any directory you wanna install Node, I use /usr/local/lib/nodejs
+```
+VERSION=v10.15.0
+DISTRO=linux-x64
+sudo mkdir -p /usr/local/lib/nodejs
+sudo tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs
+```
+1. Set the environment variable ~/.profile, add below to the end
+```
+# Nodejs
+VERSION=v10.15.0
+DISTRO=linux-x64
+export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+```
+1. Refresh profile
+  ```
+    . ~/.profile
+  ```
+1. Test Installation
+  ```
+$ node -v
+$ npm version
+$ npx -v  
+```
+
+### Ubuntu 18.04 32 bits
 
 Angular requires Node v10+ npm 3+.
 
@@ -33,6 +66,19 @@ $ export PATH=/usr/local/lib/nodejs/node-v10.21.0-linux-x86/bin:$PATH
 ```
 
 ## Install Angular
+
+```
+$ npm install -g @angular/cli
+```
+
+## Install Dependencies
+
+When you download a project from git
+
+```
+$ cd <project>
+$ npm install
+```
 
 ## Create new Angular Project
 
@@ -92,7 +138,12 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 ```
-
+use routeLinks in HTML, app/form-contact.component.html
+```html
+...
+  <a routerLink="/contact/list" class="btn btn-warning">Go Back</a>
+...
+```
 ## Edit AppComponent
 
 Edit app.component.html
@@ -271,7 +322,7 @@ Edit app/contact-form.component.ts
 
 Edit app/app.module.ts
 
-```js
+```javascript
 ...
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 ...
@@ -288,12 +339,21 @@ imports: [
 app/contact-form.component.ts
 
 ```js
-
+...
+add(): void {
+  // doSomething(this.contact);
+}
+...
 ```
 app/contact-form.compoment.html
 
 ```html
-
+...
+<div *ngIf="mode === 'add'">
+  <button type="submit" (click)="add()" class="btn btn-primary">Add</button>
+  ...
+</div>
+...
 ```
 
 ## Create Services
@@ -323,7 +383,7 @@ export class ContactService {
 
 add service to component app/contact-form.component.ts
 
-```
+```js
 ...
 import { ContactService } from "../contact.service"
 ...
@@ -332,7 +392,9 @@ constructor(
     private route: ActivatedRoute,
     private service: ContactService) {
 ...
-
+add(): void {
+  this.service.add(this.contact);
+}
 ```
 ## Troubleshooting
 
@@ -353,4 +415,14 @@ Change it
 
 ```
 $ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+```
+
+### Update properties in different components
+
+It is possible that you are returning a reference instead of a copy of an object. This might update objects in different components without confirmation.
+
+Copy the attributes
+
+```
+newVar = {...someObj};
 ```
