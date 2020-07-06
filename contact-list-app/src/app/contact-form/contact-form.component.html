@@ -1,0 +1,101 @@
+<div class="container col-md-6" >
+    <br/>
+    <h2>Add contact</h2><br/>
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputFirstName">First Name</label>
+          <input [(ngModel)]="contact.firstName" name="firstName" type="text" class="form-control" id="inputFirstName" [readonly]="mode == 'view' ? 'isReadOnly' : ''">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputLastName">Last Name</label>
+          <input [(ngModel)]="contact.lastName" name="lastName" type="text" class="form-control" id="inputLastName" [readonly]="mode == 'view' ? 'isReadOnly' : ''">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail">Email</label>
+        <input [(ngModel)]="contact.email" name="email" type="email" class="form-control" id="inputEmail" placeholder="" [readonly]="mode == 'view' ? 'isReadOnly' : ''">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label for="phone">Phone</label>
+          <input [(ngModel)]="contact.phone" name="phone" type="text" class="form-control" id="phone" name="phone" [readonly]="mode == 'view' ? 'isReadOnly' : ''">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="phoneCategory">Category</label>
+          <select [(ngModel)]="contact.phoneCategory" name="phoneCategory" id="phoneCategory" name="phoneCategory" class="form-control" [disabled]="mode == 'view' ? true : false">
+            <option>Mobile</option>
+            <option>Home</option>
+            <option>Work</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input [(ngModel)]="contact.address" name="address" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" [readonly]="mode == 'view' ? 'isReadOnly' : ''">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputCity">City</label>
+          <input [(ngModel)]="contact.city" name="city" type="text" class="form-control" id="inputCity" [readonly]="mode == 'view' ? 'isReadOnly' : ''">
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputState">State</label>
+          <select [(ngModel)]="contact.state" name="state" id="inputState" class="form-control" [disabled]="mode == 'view' ? true : false">
+            <option>AL</option>
+            <option>AC</option>
+            <option>AP</option>
+            <option>AM</option>
+            <option>BA</option>
+            <option>CE</option>
+            <option>DF</option>
+            <option>ES</option>
+            <option>GO</option>
+            <option>MA</option>
+            <option>MT</option>
+            <option>MS</option>
+            <option>MG</option>
+            <option>PA</option>
+            <option>PB</option>
+            <option>PR</option>
+            <option>PE</option>
+            <option>PI</option>
+            <option>RJ</option>
+            <option>RN</option>
+            <option>RS</option>
+            <option>RO</option>
+            <option>RR</option>
+            <option>SC</option>
+            <option>SP</option>
+            <option>SE</option>
+            <option>TO</option>
+          </select>
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputZip">Zip</label>
+          <input [(ngModel)]="contact.zip" name="zip" type="text" class="form-control" id="inputZip" [readonly]="mode == 'view' ? 'isReadOnly' : ''">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input [(ngModel)]="contact.closeFriend" name="closeFriend" class="form-check-input" type="checkbox" id="gridCheck" [disabled]="mode == 'view' ? true : false">
+          <label class="form-check-label" for="gridCheck">
+            closeFriend
+          </label>
+        </div>
+      </div>
+      <div *ngIf="mode === 'add'">
+        <button type="submit" (click)="add()" class="btn btn-primary">Add</button>
+        <a href="/" class="btn btn-warning">Cancel</a>
+      </div>
+      <div *ngIf="mode === 'edit'">
+        <button type="submit" (click)="update()" class="btn btn-primary">Update</button>
+        <a href="/contact/list" class="btn btn-warning">Go Back</a>
+      </div>
+      <div *ngIf="mode === 'view'">
+        <a href="/contact/edit/{{contact.id}}" type="submit" class="btn btn-primary">Edit</a>
+        <a href="/contact/list" class="btn btn-warning">Cancel</a >
+      </div>
+    </form>
+</div>
