@@ -3,6 +3,12 @@
 ## Description
 
 In this project we build a simple contact list to learn the essential features in [Angular framework](http://angular.io)
+
+## Folders
+
+* contact-list-app: The contact-list project;
+* hello-app: [The Tour of Heroes tutorial](https://angular.io/tutorial) from [Angular website](https://angular.io).
+
 ## Dependencies
 
 * Ubuntu 18.04
@@ -14,7 +20,7 @@ In this project we build a simple contact list to learn the essential features i
 
 ### Ubuntu 18.04 64 bits
 
-(1) Download from [Node Official; Webpage](https://nodejs.org/en/)
+(1) Download from [Node Official Webpage](https://nodejs.org/en/)
 
 (2) Follow the instructions from [Node Installation](https://github.com/nodejs/help/wiki/Installation)
 
@@ -70,7 +76,7 @@ $ export PATH=/usr/local/lib/nodejs/node-v10.21.0-linux-x86/bin:$PATH
 ```
 $ npm install -g @angular/cli
 ```
-
+See more instructions on [Angular setup-local](https://angular.io/guide/setup-local).
 ## Install Dependencies
 
 When you download a project from git
@@ -99,7 +105,7 @@ Check it http://localhost:4200/
 $ ng generate component contact-form
 $ ng generate component contact-list
 ```
-Those components were included in app/app.module.ts
+Those components were included automatically in app/app.module.ts
 
 ## Add components do AppComponents
 
@@ -113,7 +119,9 @@ Edit app/app.component.html
 ```
 ## Add the AppRoutingModule
 
+```
 $ ng generate module app-routing --flat --module=app
+```
 
 Check it src/app/app-routing.module.ts
 

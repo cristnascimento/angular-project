@@ -1,23 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Contact } from "../contact";
-import { CONTACTS } from "../mock-contact";
 import { ContactService } from "../contact.service"
+
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
-  styleUrls: ['./contact-list.component.css']
+  styleUrls: ['./contact-list.component.css'],
+  preserveWhitespaces: true
 })
 export class ContactListComponent implements OnInit {
 
-  contacts: Contact[] = CONTACTS;
+  contacts: Contact[];
+  counter: number;
 
   constructor(
     private route: ActivatedRoute,
-    private service: ContactService) { }
+    private service: ContactService) {
+      this.contacts = [];
+      this.counter = 0;
+    }
 
   ngOnInit(): void {
-
+    this.contacts = this.service.getContacts();
   }
 
   delete(id: number): void {

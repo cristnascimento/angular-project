@@ -87,15 +87,15 @@
       </div>
       <div *ngIf="mode === 'add'">
         <button type="submit" (click)="add()" class="btn btn-primary">Add</button>
-        <a href="/" class="btn btn-warning">Cancel</a>
+        <a routerLink="/" class="btn btn-warning">Cancel</a>
       </div>
       <div *ngIf="mode === 'edit'">
         <button type="submit" (click)="update()" class="btn btn-primary">Update</button>
-        <a href="/contact/list" class="btn btn-warning">Go Back</a>
+        <a routerLink="/contact/list" class="btn btn-warning">Cancel</a>
       </div>
       <div *ngIf="mode === 'view'">
-        <a href="/contact/edit/{{contact.id}}" type="submit" class="btn btn-primary">Edit</a>
-        <a href="/contact/list" class="btn btn-warning">Cancel</a >
+        <a routerLink="/contact/edit/{{contact.id}}" type="submit" class="btn btn-primary">Edit</a>
+        <a routerLink="/contact/list" class="btn btn-warning">Go Back</a >
       </div>
     </form>
 </div>

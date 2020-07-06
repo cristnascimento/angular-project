@@ -12,14 +12,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let contact of contacts">
-              <th scope="row">1</th>
+            <tr *ngFor="let contact of contacts; index as rowNumber">
+              <th scope="row">{{ rowNumber + 1 }}</th>
               <td>{{ contact.firstName }}</td>
               <td>{{ contact.lastName}}</td>
               <td>{{contact.email}}</td>
               <td>
-                <a class="btn btn-success" href="/contact/view/{{contact.id}}" role="button">View</a>
-                <a class="btn btn-warning" href="/contact/edit/{{contact.id}}" role="button">Edit</a>
+                <a class="btn btn-success" routerLink="/contact/view/{{contact.id}}" role="button">View</a>
+                <a class="btn btn-warning" routerLink="/contact/edit/{{contact.id}}" role="button">Edit</a>
                 <button class="btn btn-danger" (click)="delete(contact.id)" role="button">Remove</button>
               </td>
             </tr>
